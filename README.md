@@ -1,6 +1,6 @@
 # R4vim
 
-*This vim plugin is in the very early stages of development*
+**This vim plugin is in the very early stages of development**
 
 This plugin was inspired by wanting the power of Vim for editing R scripts, while
 having the capability of running commands and code snippets in R.

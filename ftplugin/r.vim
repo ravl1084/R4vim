@@ -16,12 +16,12 @@ function StopR()
 	if v:shell_error
 		echom 'R not running'
 	else
-		b:choice = confirm("Save R workspace?", "&Yes\n&No\n&Cancel")
+		let &l:choice = confirm("Save R workspace?", "&Yes\n&No\n&Cancel")
 		call system("tmux -L vimR send-keys -t RConsole -l 'q()'")
 		call system("tmux -L vimR send-keys -t RConsole Enter")
-		if b:choice == 1
+		if &l:choice == 1
 			call system("tmux -L vimR send-keys -t RConsole -l y")
-		elseif b:choice == 2
+		elseif &l:choice == 2
 			call system("tmux -L vimR send-keys -t RConsole -l n")
 		else
 			call system("tmux -L vimR send-keys -t RConsole -l c")

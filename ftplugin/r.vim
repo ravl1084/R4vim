@@ -35,10 +35,26 @@ function SendLineToR()
 	call SendR(@b)
 endfunction
 
+function SendChunkToR(chunk)
+	let chlist=split(chunk, "\v\n")
+	for chline in chlist
+		call SendR(chline)
+	endfor
+endfunction
+
 function StartR()
 	if IsRUp()
 		if g:R_term == "konsole"
 			call system("konsole -e tmux -L vimR new-session -s RConsole 'R'")
+		else
+			call system("xterm -e tmux -L vimR new-session -s RConsole 'R'")
+		endif
+		if IsRUp()
+			echom "R started successfully"
+		else
+			echohl Error
+			echom "R did not start properly"
+			echohl None
 		endif
 	else
 		echohl WarningMsg
@@ -69,3 +85,4 @@ endfunction
 nnoremap <buffer> <silent><localleader>rs :call StartR()<cr>
 nnoremap <buffer> <silent><localleader>rx :call StopR()<cr>
 nnoremap <buffer> <silent><localleader>l :call SendLineToR()<cr>
+vnoremap <buffer> <silent><localleader>l :call SendChunktoR(@*)<cr>

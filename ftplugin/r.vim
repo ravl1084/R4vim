@@ -14,41 +14,44 @@ function IsRUp()
 endfunction
 
 function SendR(cmd)
-	"call system("tmux -L vimR has-session -t RConsole")
-	"if v:shell_error
 	if IsRUp()
+		echohl Error
 		echom "R is not running."
+		echohl None
 	else
 		if a:cmd != ""
 			call system("tmux -L vimR send-keys -t RConsole -l '".a:cmd."'")
 			call system("tmux -L vimR send-keys -t RConsole Enter")
 		else
+			echohl WarningMsg
 			echom "Blank command not sent to R."
+			echohl None
 		endif
 	endif
 endfunction
 
 function SendLineToR()
-	TODO
+	execute "normal! _vg_\"byj"
+	call SendR(@b)
 endfunction
 
 function StartR()
-	"call system("tmux -L vimR has-session -t RConsole")
-	"if v:shell_error
 	if IsRUp()
 		if g:R_term == "konsole"
 			call system("konsole -e tmux -L vimR new-session -s RConsole 'R'")
 		endif
 	else
+		echohl WarningMsg
 		echom "R is already running."
+		echohl None
 	endif
 endfunction
 
 function StopR()
-	"call system("tmux -L vimR has-session -t RConsole")
-	"if v:shell_error
 	if IsRUp()
+		echohl Error
 		echom "R is not running."
+		echohl None
 	else
 		let choice = confirm("Save R workspace?", "&yes\n&no\n&cancel")
 		call SendR("q()")
@@ -65,3 +68,4 @@ endfunction
 "Mappings
 nnoremap <buffer> <localleader>rs :call StartR()<cr>
 nnoremap <buffer> <localleader>rx :call StopR()<cr>
+nnoremap <buffer> <silent><localleader>l :call SendLineToR()<cr>

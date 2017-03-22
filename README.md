@@ -9,5 +9,8 @@ having the capability of running commands and code snippets in R.
 * Provide this functionality for Vim.
 * Simplicity. Send commands to R.
 
+## Bugs
+Bugs/todo's are tracked in this repository via [Bugs Everywhere](http://www.bugseverywhere.org/).
+
 ## Acknowledgements
 * [Nvim-R](https://github.com/jalvesaq/Nvim-R): for the great syntax highlighting.

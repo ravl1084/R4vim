@@ -85,4 +85,4 @@ endfunction
 nnoremap <buffer> <silent><localleader>rs :call StartR()<cr>
 nnoremap <buffer> <silent><localleader>rx :call StopR()<cr>
 nnoremap <buffer> <silent><localleader>l :call SendLineToR()<cr>
-vnoremap <buffer> <silent><localleader>l :call SendChunktoR(@*)<cr>
+vnoremap <buffer> <silent><localleader>l :call SendChunkToR(@*)<cr>

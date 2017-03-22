@@ -21,10 +21,13 @@ function StopR()
 		call system("tmux -L vimR send-keys -t RConsole Enter")
 		if choice == 1
 			call system("tmux -L vimR send-keys -t RConsole -l y")
+			call system("tmux -L vimR send-keys -t RConsole Enter")
 		elseif choice == 2
 			call system("tmux -L vimR send-keys -t RConsole -l n")
+			call system("tmux -L vimR send-keys -t RConsole Enter")
 		else
 			call system("tmux -L vimR send-keys -t RConsole -l c")
+			call system("tmux -L vimR send-keys -t RConsole Enter")
 		endif
 		call system("tmux -L vimR send-keys -t RConsole Enter")
 

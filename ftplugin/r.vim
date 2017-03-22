@@ -68,4 +68,4 @@ endfunction
 "Mappings
 nnoremap <buffer> <localleader>rs :call StartR()<cr>
 nnoremap <buffer> <localleader>rx :call StopR()<cr>
-nnoremap <buffer> <silent><localleader>l :call SendLineToR()<cr>
+nnoremap <buffer> <localleader>l :call SendLineToR()<cr>

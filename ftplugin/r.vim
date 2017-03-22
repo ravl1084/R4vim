@@ -26,10 +26,13 @@ function StopR()
 		else
 			call system("tmux -L vimR send-keys -t RConsole -l c")
 		endif
+		call system("tmux -L vimR send-keys -t RConsole Enter")
+
 	endif
 	"call system("tmux -L vimR send-keys -t RConsole -l 'q()'")
 	"call system("tmux -L vimR send-keys -t RConsole Enter")
 endfunction
 
+"Mappings
 nnoremap <buffer> <localleader>rs :call StartR()<cr>
 nnoremap <buffer> <localleader>rx :call StopR()<cr>

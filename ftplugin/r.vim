@@ -36,7 +36,7 @@ function SendLineToR()
 endfunction
 
 function SendChunkToR(chunk)
-	let chlist=split(chunk, "\v\n")
+	let chlist=split(a:chunk, "\v\n")
 	for chline in chlist
 		call SendR(chline)
 	endfor

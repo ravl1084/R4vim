@@ -1,0 +1,43 @@
+*R4vim.txt* functionality to interact with R from vim.
+                         ____  _  _        _           ~
+                        |  _ \| || |__   _(_)_ __ ___  ~
+                        | |_) | || |\ \ / / | '_ ` _ \ ~
+                        |  _ <|__   _\ V /| | | | | | |~
+                        |_| \_\  |_|  \_/ |_|_| |_| |_|~
+                                                       ~
+===============================================================================
+USAGE 								*R4vimUsage*
+
+This plugin provides helpful mappings to instantiate R in a separate terminal
+and send code snippets to R.
+
+DEPENDENCIES 						*R4vimDependencies*
+
+	- R (obviously).
+	- tmux.
+
+MAPPINGS 							*R4vimMappings*
+
+Normal mode:
+	<leader>rs 	Start R in new terminal.
+	<leader>rx 	Stop R, will ask to confirm if workspace should be
+			saved.
+	<leader>l 	Send current line to R and execute.
+
+
+Visual mode:
+	<leader>l 	Send visual selection to R. Best used with <V> for
+			sending full lines.
+
+CHANGELOG 							 *R4vimChangelog*
+
+v1.0.0-alpha:
+	* Initial release.
+
+CREDITS 							 *R4vimCredits*
+
+This plugin was put together by Rene Vergara and it's available at
+https://github.com/ravl1084/R4vim
+
+Special thanks to jalvesaq@github for his Nvim-R Neovim plugin for insipiring this
+one.

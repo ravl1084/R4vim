@@ -51,6 +51,9 @@ function StartR()
 		endif
 		if IsRUp()
 			echom "R started successfully"
+			let tmpfile = tempname()
+			let initcmd = "sink(\"".tmpfile."\", append=TRUE, split=TRUE)"
+			call SendR(initcmd)
 		else
 			echohl Error
 			echom "R did not start properly"

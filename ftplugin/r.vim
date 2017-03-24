@@ -30,7 +30,7 @@ function SendR(cmd)
 			echohl None
 		endif
 	endif
-	call RbufferRefresh(s:tmpfile)
+	call RbufferOpen(s:tmpfile)
 endfunction
 
 function SendLineToR()
@@ -47,7 +47,7 @@ endfunction
 
 function RbufferRefresh(tmpfile)
 	normal! ggdG
-	call read a:tmpfile
+	call append(0, readfile(a:tmpfile))
 endfunction
 
 function RbufferOpen(tmpfile)
@@ -57,14 +57,14 @@ function RbufferOpen(tmpfile)
 
 	if bufsplit < 0
 		silent! execute 'botright new '. buffer_name
+		setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap nonumber
+
+		silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+		silent! execute 'nnoremap <silent> <buffer> <localleader>r :call RbufferRefresh(''' . a:tmpfile . ''')<cr>'
 	else
 		silent! execute bufsplit . 'wincmd w'
 	endif
-
-	setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap nonumber
-
-	silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
-	silent! execute 'nnoremap <silent> <buffer> <localleader>r :call RbufferRefresh(''' . a:tmpfile . ''')<cr>'
+	call RbufferRefresh(a:tmpfile)
 endfunction
 
 function StartR()
@@ -80,7 +80,6 @@ function StartR()
 			let initcmd = "sink(\"".s:tmpfile."\", append=TRUE, split=TRUE)"
 			call RbufferOpen(s:tmpfile)
 			call SendR(initcmd)
-			"call RbufferRefresh(s:tmpfile)
 
 			silent! redraw
 		else

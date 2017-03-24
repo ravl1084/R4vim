@@ -78,9 +78,9 @@ function StartR()
 			echom "R started successfully"
 			sleep 2000m
 			let initcmd = "sink(\"".s:tmpfile."\", append=TRUE, split=TRUE)"
-			call SendR(initcmd)
 			call RbufferOpen(s:tmpfile)
-			call RbufferRefresh(s:tmpfile)
+			call SendR(initcmd)
+			"call RbufferRefresh(s:tmpfile)
 
 			silent! redraw
 		else

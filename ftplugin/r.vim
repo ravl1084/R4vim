@@ -30,7 +30,7 @@ function SendR(cmd)
 			echohl None
 		endif
 	endif
-	call RbufferRefresh(tmpfile)
+	call RbufferRefresh(s:tmpfile)
 endfunction
 
 function SendLineToR()

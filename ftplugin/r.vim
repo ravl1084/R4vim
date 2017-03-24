@@ -8,6 +8,8 @@ if exists('did_r_vim') || &cp || version < 700
 endif
 let did_r_vim = 1
 
+let tmpfile = tempname()
+
 function IsRUp()
 	call system("tmux -L vimR has-session -t RConsole")
 	return v:shell_error
@@ -75,7 +77,6 @@ function StartR()
 		if IsRUp()
 			echom "R started successfully"
 			sleep 2000m
-			let tmpfile = tempname()
 			let initcmd = "sink(\"".tmpfile."\", append=TRUE, split=TRUE)"
 			call SendR(initcmd)
 			call RbufferOpen(tmpfile)

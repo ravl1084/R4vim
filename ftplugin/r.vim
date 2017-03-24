@@ -28,6 +28,7 @@ function SendR(cmd)
 			echohl None
 		endif
 	endif
+	call RbufferRefresh(tmpfile)
 endfunction
 
 function SendLineToR()

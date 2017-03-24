@@ -51,6 +51,7 @@ function StartR()
 		endif
 		if IsRUp()
 			echom "R started successfully"
+			sleep 2000m
 			let tmpfile = tempname()
 			let initcmd = "sink(\"".tmpfile."\", append=TRUE, split=TRUE)"
 			call SendR(initcmd)

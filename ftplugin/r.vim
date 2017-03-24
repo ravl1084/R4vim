@@ -42,6 +42,28 @@ function SendChunkToR(chunk)
 	endfor
 endfunction
 
+function RbufferRefresh(tmpfile)
+	normal! ggdG
+	call read tmpfile
+endfunction
+
+function RbufferOpen(tmpfile)
+	let buffer_name = fnameescape(a:tmpfile)
+
+	let bufsplit = bufwinnr('^' . buffer_name . '$')
+
+	if bufsplit < 0
+		silent! execute 'botright new '. buffer_name
+	else
+		silent! execute bufsplit . 'wincmd w'
+	endif
+
+	setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap nonumber
+
+	silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+	silent! execute 'nnoremap <silent> <buffer> <localleader>r :call RbufferRefresh(''' . a:tmpfile . ''')<cr>'
+endfunction
+
 function StartR()
 	if IsRUp()
 		if g:R_term == "konsole"
@@ -55,6 +77,10 @@ function StartR()
 			let tmpfile = tempname()
 			let initcmd = "sink(\"".tmpfile."\", append=TRUE, split=TRUE)"
 			call SendR(initcmd)
+			call RbufferOpen(tmpfile)
+			call RbufferRefresh(tmpfile)
+
+			silent! redraw
 		else
 			echohl Error
 			echom "R did not start properly"

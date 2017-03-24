@@ -1,0 +1,78 @@
+{
+
+
+
+
+
+
+    "creator": "Rene Vergara <rene.a.vergara@gmail.com>", 
+
+
+
+
+
+
+    "extra_strings": [
+
+
+
+
+
+
+        "BLOCKS:3fc5b532-ac76-4079-b7a9-3c758ed8f96e", 
+
+
+
+
+
+
+        "TAG:enhance"
+
+
+
+
+
+
+    ], 
+
+
+
+
+
+
+    "reporter": "Rene Vergara <rene.a.vergara@gmail.com>", 
+
+
+
+
+
+
+    "severity": "minor", 
+
+
+
+
+
+
+    "status": "open", 
+
+
+
+
+
+
+    "summary": "show R output in buffer", 
+
+
+
+
+
+
+    "time": "Fri, 24 Mar 2017 18:35:39 +0000"
+
+
+
+
+
+
+}

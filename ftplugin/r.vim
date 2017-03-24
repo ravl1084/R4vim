@@ -63,8 +63,8 @@ function RbufferOpen(tmpfile)
 		silent! execute 'nnoremap <silent> <buffer> <localleader>r :call RbufferRefresh(''' . a:tmpfile . ''')<cr>'
 	else
 		silent! execute bufsplit . 'wincmd w'
+		call RbufferRefresh(a:tmpfile)
 	endif
-	call RbufferRefresh(a:tmpfile)
 endfunction
 
 function StartR()

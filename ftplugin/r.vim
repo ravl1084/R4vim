@@ -8,7 +8,7 @@ if exists('did_r_vim') || &cp || version < 700
 endif
 let did_r_vim = 1
 
-let tmpfile = tempname()
+let s:tmpfile = tempname()
 
 function IsRUp()
 	call system("tmux -L vimR has-session -t RConsole")
@@ -47,7 +47,7 @@ endfunction
 
 function RbufferRefresh(tmpfile)
 	normal! ggdG
-	call read tmpfile
+	call read a:tmpfile
 endfunction
 
 function RbufferOpen(tmpfile)
@@ -77,10 +77,10 @@ function StartR()
 		if IsRUp()
 			echom "R started successfully"
 			sleep 2000m
-			let initcmd = "sink(\"".tmpfile."\", append=TRUE, split=TRUE)"
+			let initcmd = "sink(\"".s:tmpfile."\", append=TRUE, split=TRUE)"
 			call SendR(initcmd)
-			call RbufferOpen(tmpfile)
-			call RbufferRefresh(tmpfile)
+			call RbufferOpen(s:tmpfile)
+			call RbufferRefresh(s:tmpfile)
 
 			silent! redraw
 		else

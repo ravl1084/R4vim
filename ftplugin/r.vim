@@ -46,7 +46,7 @@ function SendChunkToR(chunk)
 endfunction
 
 function RbufferRefresh(tmpfile)
-	normal! ggdG
+	silent! normal! ggdG
 	call append(0, readfile(a:tmpfile))
 endfunction
 
@@ -61,6 +61,7 @@ function RbufferOpen(tmpfile)
 
 		silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
 		silent! execute 'nnoremap <silent> <buffer> <localleader>r :call RbufferRefresh(''' . a:tmpfile . ''')<cr>'
+		cal RbufferRefresh(a:tmpfile)
 	else
 		silent! execute bufsplit . 'wincmd w'
 		call RbufferRefresh(a:tmpfile)

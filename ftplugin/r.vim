@@ -57,7 +57,7 @@ function RbufferOpen(tmpfile)
 
 	if bufsplit < 0
 		silent! execute 'botright new '. buffer_name
-		setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap nonumber
+		setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap nonumber filetype=r
 
 		silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
 		silent! execute 'nnoremap <silent> <buffer> <localleader>r :call RbufferRefresh(''' . a:tmpfile . ''')<cr>'

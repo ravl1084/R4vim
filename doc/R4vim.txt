@@ -29,8 +29,13 @@ Visual mode:
 	<leader>l 	Send visual selection to R. Best used with <V> for
 			sending full lines.
 
+R Output buffer:
+	<leader>r 	Refresh output.
+
 CHANGELOG 							 *R4vimChangelog*
 
+v1.0.0:
+	* Implement buffer displaying R output.
 v1.0.0-alpha:
 	* Initial release.
 

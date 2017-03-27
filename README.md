@@ -5,7 +5,7 @@ having the capability of running commands and code snippets in R.
 
 ## Goals
 * Provide this functionality for Vim.
-* Simplicity. Send commands to R.
+* Simplicity. Send commands to R, display output in a buffer.
 
 ## Dependencies
 * [R](https://cran.r-project.org/)

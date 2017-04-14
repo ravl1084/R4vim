@@ -1,7 +1,7 @@
 " File: r.vim
 " Author: Rene Vergara
 " Description: Vim plugin to interact with R simply
-" Last Modified: March 22, 2017
+" Last Modified: April 14, 2017
 
 if exists('did_r_vim') || &cp || version < 700
 	finish
@@ -24,6 +24,7 @@ function SendR(cmd)
 		if a:cmd != ""
 			call system("tmux -L vimR send-keys -t RConsole -l '".a:cmd."'")
 			call system("tmux -L vimR send-keys -t RConsole Enter")
+			sleep 1000m
 		else
 			echohl WarningMsg
 			echom "Blank command not sent to R."
@@ -48,6 +49,7 @@ endfunction
 function RbufferRefresh(tmpfile)
 	silent! normal! ggdG
 	call append(0, readfile(a:tmpfile))
+	silent! execute '1wincmd w'
 endfunction
 
 function RbufferOpen(tmpfile)
@@ -61,7 +63,7 @@ function RbufferOpen(tmpfile)
 
 		silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
 		silent! execute 'nnoremap <silent> <buffer> <localleader>r :call RbufferRefresh(''' . a:tmpfile . ''')<cr>'
-		cal RbufferRefresh(a:tmpfile)
+		call RbufferRefresh(a:tmpfile)
 	else
 		silent! execute bufsplit . 'wincmd w'
 		call RbufferRefresh(a:tmpfile)
@@ -77,7 +79,7 @@ function StartR()
 		endif
 		if IsRUp()
 			echom "R started successfully"
-			sleep 2000m
+			sleep 3000m
 			let initcmd = "sink(\"".s:tmpfile."\", append=TRUE, split=TRUE)"
 			call RbufferOpen(s:tmpfile)
 			call SendR(initcmd)
